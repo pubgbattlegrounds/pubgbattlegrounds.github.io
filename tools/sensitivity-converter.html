@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sensitivity &amp; eDPI Converter | PUBG Battlegrounds Guides</title>
+<meta name="description" content="Convert your PUBG sensitivity between different mouse DPI settings, find your true eDPI and cm per 360. Free in-browser tool.">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Segoe UI',Arial,Helvetica,sans-serif;background:#0e1218;color:#e8e8e8;line-height:1.7}
+a{color:#f2a900;text-decoration:none}
+a:hover{text-decoration:underline}
+header{background:#12161d;border-bottom:3px solid #f2a900;position:sticky;top:0;z-index:100}
+.header-inner{max-width:1100px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;padding:14px 20px;flex-wrap:wrap;gap:10px}
+.logo{font-size:24px;font-weight:800;color:#fff;letter-spacing:1px}
+.logo span{color:#f2a900}
+nav{display:flex;gap:4px;flex-wrap:wrap}
+nav a{color:#cfd3d8;padding:8px 12px;border-radius:6px;font-size:15px}
+nav a:hover{background:#1e242e;color:#f2a900;text-decoration:none}
+nav a.active{background:#f2a900;color:#111}
+main{max-width:820px;margin:0 auto;padding:28px 20px 40px}
+.breadcrumb{font-size:13px;color:#9aa0a8;margin-bottom:12px}
+.breadcrumb a{color:#9aa0a8}
+h1{font-size:30px;line-height:1.25;margin-bottom:8px;color:#fff}
+.lead{color:#b9bec5;margin-bottom:24px}
+.tool-box{background:#151b23;border:1px solid #2a313c;border-radius:12px;padding:24px;margin-bottom:24px}
+.tool-box h2{font-size:20px;color:#f2a900;margin-bottom:16px}
+.field{margin-bottom:16px}
+.field label{display:block;font-weight:700;margin-bottom:6px;font-size:15px}
+.field input,.field select{width:100%;padding:12px 14px;border-radius:8px;border:1px solid #2a313c;background:#0e1218;color:#e8e8e8;font-size:16px}
+.field small{color:#9aa0a8}
+button.calc{width:100%;padding:14px;border:0;border-radius:8px;background:#f2a900;color:#111;font-weight:800;font-size:17px;cursor:pointer}
+button.calc:hover{background:#ffc233}
+.results{display:none;background:#1a222c;border:1px solid #f2a900;border-radius:12px;padding:22px;margin-bottom:24px}
+.results h2{font-size:20px;color:#f2a900;margin-bottom:12px}
+.result-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:14px}
+.result-card{background:#0e1218;border:1px solid #2a313c;border-radius:8px;padding:14px;text-align:center}
+.result-card b{font-size:24px;color:#f2a900;display:block}
+.result-card span{font-size:13px;color:#9aa0a8}
+.note{font-size:14px;color:#9aa0a8;margin-top:14px}
+h2.sec{font-size:22px;color:#f2a900;margin:28px 0 10px;padding-bottom:6px;border-bottom:1px solid #2a313c}
+p{margin-bottom:14px}
+ul{margin:0 0 14px 24px}
+li{margin-bottom:6px}
+.tip{background:#1a222c;border-left:4px solid #f2a900;padding:14px 16px;border-radius:0 8px 8px 0;margin:20px 0}
+.tip strong{color:#f2a900}
+footer{background:#12161d;border-top:3px solid #f2a900;margin-top:40px}
+.footer-inner{max-width:1100px;margin:0 auto;padding:28px 20px;display:flex;flex-wrap:wrap;gap:28px;justify-content:space-between}
+.footer-col h4{color:#f2a900;margin-bottom:10px;font-size:16px}
+.footer-col a{display:block;color:#cfd3d8;padding:3px 0;font-size:14px}
+.copyright{max-width:1100px;margin:0 auto;padding:0 20px 22px;color:#8a9098;font-size:13px}
+@media(max-width:640px){h1{font-size:25px}.header-inner{justify-content:center;text-align:center}nav{justify-content:center}}
+</style>
+</head>
+<body>
+<header>
+<div class="header-inner">
+<a class="logo" href="../index.html">PUBG<span> GUIDES</span></a>
+<nav>
+<a href="../index.html">Home</a>
+<a href="../index.html#guides">Guides</a>
+<a href="../index.html#tools" class="active">Tools</a>
+<a href="../about.html">About</a>
+<a href="../contact.html">Contact</a>
+</nav>
+</div>
+</header>
+<main>
+<div class="breadcrumb"><a href="../index.html">Home</a> / <a href="../index.html#tools">Tools</a> / Sensitivity &amp; eDPI Converter</div>
+<h1>Sensitivity &amp; eDPI Converter</h1>
+<p class="lead">Switching mouse DPI or comparing your sensitivity with a friend's? Enter your current setup and find the exact sensitivity that feels the same at any DPI — plus your true eDPI and cm per 360&deg;.</p>
+
+<div class="tool-box">
+<h2>Convert Your Sensitivity</h2>
+<div class="field">
+<label for="curDpi">Your current mouse DPI</label>
+<input type="number" id="curDpi" value="800" min="100" max="32000" step="50">
+<small>Common values: 400, 800, 1600</small>
+</div>
+<div class="field">
+<label for="curSens">Your current in-game sensitivity (General)</label>
+<input type="number" id="curSens" value="30" min="1" max="100" step="0.5">
+<small>PUBG general sensitivity, usually between 10 and 60</small>
+</div>
+<div class="field">
+<label for="newDpi">New mouse DPI</label>
+<input type="number" id="newDpi" value="1600" min="100" max="32000" step="50">
+</div>
+<button class="calc" onclick="convertSens()">Convert Sensitivity</button>
+</div>
+
+<div class="results" id="results">
+<h2>Your Converted Sensitivity</h2>
+<div class="result-grid">
+<div class="result-card"><b id="rNewSens">-</b><span>New sensitivity</span></div>
+<div class="result-card"><b id="rEdpi">-</b><span>Your eDPI</span></div>
+<div class="result-card"><b id="rCm360">-</b><span>cm per 360&deg; turn</span></div>
+<div class="result-card"><b id="rSens360">-</b><span>Counts per 360&deg;</span></div>
+</div>
+<p class="note">eDPI = DPI &times; sensitivity. It is the only fair way to compare sensitivity between players using different mice. cm per 360&deg; is calculated using PUBG's standard base yaw of 0.0022&deg; per mouse count.</p>
+</div>
+
+<h2 class="sec">How to Use This Converter</h2>
+<p>If your mouse runs at 800 DPI with a sensitivity of 30, your eDPI is 24,000. Move to a 1600 DPI mouse and you need a sensitivity of 15 to keep the exact same feel — the converter does this maths for you.</p>
+<ul>
+<li><strong>Low eDPI (below 15,000):</strong> slow, steady aim. Great for long-range precision, but you need a large mousepad.</li>
+<li><strong>Medium eDPI (15,000 – 30,000):</strong> the balanced range most players use. Good control with enough speed to react.</li>
+<li><strong>High eDPI (above 30,000):</strong> very fast turning. Good for close quarters, but harder to control at range.</li>
+</ul>
+<div class="tip"><strong>Pro Tip:</strong> Change only one thing at a time. If you change DPI, use this converter to match your old sensitivity, then play at least 10 matches before deciding it feels wrong. Your muscle memory needs time to adjust.</div>
+<p>Read our full <a href="../guides/sensitivity-guide.html">PUBG Sensitivity Guide</a> to learn how to fine-tune each scope sensitivity separately.</p>
+</main>
+<footer>
+<div class="footer-inner">
+<div class="footer-col"><h4>PUBG GUIDES</h4><a href="../index.html">Home</a><a href="../index.html#guides">All Guides</a><a href="../index.html#tools">Tools</a></div>
+<div class="footer-col"><h4>Popular Guides</h4><a href="../guides/best-weapons-2026.html">Best Weapons 2026</a><a href="../guides/recoil-control-guide.html">Recoil Control</a><a href="../guides/how-to-win-chicken-dinner.html">Win a Chicken Dinner</a></div>
+<div class="footer-col"><h4>Information</h4><a href="../about.html">About Us</a><a href="../contact.html">Contact</a><a href="../privacy.html">Privacy Policy</a><a href="../disclaimer.html">Disclaimer</a></div>
+<div class="footer-col"><h4>Download</h4><a href="https://store.steampowered.com/app/578080" target="_blank" rel="noopener">Download on Steam</a><a href="https://play.google.com/store/apps/details/PUBG_MOBILE?id=com.tencent.ig&amp;hl=en_GB" target="_blank" rel="noopener">Get it on Google Play</a><a href="https://apps.apple.com/pk/app/pubg-mobile/id1330123889" target="_blank" rel="noopener">Download on the App Store</a></div>
+</div>
+<p class="copyright">PUBG Guides is an unofficial fan-made guide website. It is not affiliated with, endorsed by, or connected to KRAFTON, Inc. or PUBG: Battlegrounds. PUBG and PUBG: Battlegrounds are trademarks of KRAFTON, Inc. &copy; 2026 PUBG Guides.</p>
+</footer>
+<script>
+function convertSens(){
+  var dpi=parseFloat(document.getElementById('curDpi').value);
+  var sens=parseFloat(document.getElementById('curSens').value);
+  var newDpi=parseFloat(document.getElementById('newDpi').value);
+  if(!dpi||!sens||!newDpi||dpi<=0||sens<=0||newDpi<=0){alert('Please enter valid numbers greater than zero.');return;}
+  var edpi=dpi*sens;
+  var newSens=edpi/newDpi;
+  var countsPer360=360/(0.0022*sens);
+  var cm360=(countsPer360/dpi)*2.54;
+  document.getElementById('rNewSens').textContent=newSens.toFixed(1);
+  document.getElementById('rEdpi').textContent=Math.round(edpi).toLocaleString();
+  document.getElementById('rCm360').textContent=cm360.toFixed(1)+' cm';
+  document.getElementById('rSens360').textContent=Math.round(countsPer360).toLocaleString();
+  document.getElementById('results').style.display='block';
+  document.getElementById('results').scrollIntoView({behavior:'smooth'});
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Interactive Recoil Guide | PUBG Battlegrounds Guides</title>
+<meta name="description" content="Pick any popular PUBG weapon and see its recoil pattern, best attachments and spray tips. Free in-browser tool.">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Segoe UI',Arial,Helvetica,sans-serif;background:#0e1218;color:#e8e8e8;line-height:1.7}
+a{color:#f2a900;text-decoration:none}
+a:hover{text-decoration:underline}
+header{background:#12161d;border-bottom:3px solid #f2a900;position:sticky;top:0;z-index:100}
+.header-inner{max-width:1100px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;padding:14px 20px;flex-wrap:wrap;gap:10px}
+.logo{font-size:24px;font-weight:800;color:#fff;letter-spacing:1px}
+.logo span{color:#f2a900}
+nav{display:flex;gap:4px;flex-wrap:wrap}
+nav a{color:#cfd3d8;padding:8px 12px;border-radius:6px;font-size:15px}
+nav a:hover{background:#1e242e;color:#f2a900;text-decoration:none}
+nav a.active{background:#f2a900;color:#111}
+main{max-width:820px;margin:0 auto;padding:28px 20px 40px}
+.breadcrumb{font-size:13px;color:#9aa0a8;margin-bottom:12px}
+.breadcrumb a{color:#9aa0a8}
+h1{font-size:30px;line-height:1.25;margin-bottom:8px;color:#fff}
+.lead{color:#b9bec5;margin-bottom:24px}
+.tool-box{background:#151b23;border:1px solid #2a313c;border-radius:12px;padding:24px;margin-bottom:24px}
+.tool-box h2{font-size:20px;color:#f2a900;margin-bottom:16px}
+.weapon-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:10px}
+.weapon-btn{padding:12px 8px;border-radius:8px;border:1px solid #2a313c;background:#0e1218;color:#e8e8e8;font-size:15px;font-weight:700;cursor:pointer}
+.weapon-btn:hover{border-color:#f2a900;color:#f2a900}
+.weapon-btn.active{background:#f2a900;color:#111;border-color:#f2a900}
+.results{display:none;background:#1a222c;border:1px solid #f2a900;border-radius:12px;padding:22px;margin-bottom:24px}
+.results h2{font-size:22px;color:#f2a900;margin-bottom:4px}
+.results .sub{color:#9aa0a8;font-size:14px;margin-bottom:14px}
+.bar-row{display:flex;align-items:center;gap:12px;margin-bottom:10px}
+.bar-row span{width:150px;font-size:14px;color:#b9bec5}
+.bar{flex:1;height:12px;background:#0e1218;border-radius:6px;overflow:hidden}
+.bar i{display:block;height:100%;background:#f2a900;border-radius:6px}
+.bar-row b{width:30px;text-align:right}
+.results h3{color:#f2a900;font-size:17px;margin:16px 0 6px}
+.results ul{margin:0 0 6px 22px}
+.results li{margin-bottom:5px}
+.note{font-size:14px;color:#9aa0a8;margin-top:14px}
+h2.sec{font-size:22px;color:#f2a900;margin:28px 0 10px;padding-bottom:6px;border-bottom:1px solid #2a313c}
+p{margin-bottom:14px}
+ul{margin:0 0 14px 24px}
+li{margin-bottom:6px}
+.tip{background:#1a222c;border-left:4px solid #f2a900;padding:14px 16px;border-radius:0 8px 8px 0;margin:20px 0}
+.tip strong{color:#f2a900}
+footer{background:#12161d;border-top:3px solid #f2a900;margin-top:40px}
+.footer-inner{max-width:1100px;margin:0 auto;padding:28px 20px;display:flex;flex-wrap:wrap;gap:28px;justify-content:space-between}
+.footer-col h4{color:#f2a900;margin-bottom:10px;font-size:16px}
+.footer-col a{display:block;color:#cfd3d8;padding:3px 0;font-size:14px}
+.copyright{max-width:1100px;margin:0 auto;padding:0 20px 22px;color:#8a9098;font-size:13px}
+@media(max-width:640px){h1{font-size:25px}.header-inner{justify-content:center;text-align:center}nav{justify-content:center}.bar-row span{width:110px}}
+</style>
+</head>
+<body>
+<header>
+<div class="header-inner">
+<a class="logo" href="../index.html">PUBG<span> GUIDES</span></a>
+<nav>
+<a href="../index.html">Home</a>
+<a href="../index.html#guides">Guides</a>
+<a href="../index.html#tools" class="active">Tools</a>
+<a href="../about.html">About</a>
+<a href="../contact.html">Contact</a>
+</nav>
+</div>
+</header>
+<main>
+<div class="breadcrumb"><a href="../index.html">Home</a> / <a href="../index.html#tools">Tools</a> / Interactive Recoil Guide</div>
+<h1>Interactive Recoil Guide</h1>
+<p class="lead">Pick a weapon below to see how hard its recoil kicks, which attachments tame it best, and how to spray it effectively.</p>
+
+<div class="tool-box">
+<h2>Choose a Weapon</h2>
+<div class="weapon-grid" id="weaponGrid"></div>
+</div>
+
+<div class="results" id="results">
+<h2 id="rName">M416</h2>
+<p class="sub" id="rSub">Assault Rifle &bull; 5.56mm</p>
+<div class="bar-row"><span>Vertical recoil</span><div class="bar"><i id="rVert" style="width:40%"></i></div><b id="rVertN">4</b></div>
+<div class="bar-row"><span>Horizontal recoil</span><div class="bar"><i id="rHorz" style="width:30%"></i></div><b id="rHorzN">3</b></div>
+<div class="bar-row"><span>Spray difficulty</span><div class="bar"><i id="rDiff" style="width:40%"></i></div><b id="rDiffN">4</b></div>
+<h3>Recoil pattern</h3>
+<p id="rPattern"></p>
+<h3>Best attachments</h3>
+<ul id="rAttach"></ul>
+<h3>Spray tips</h3>
+<ul id="rTips"></ul>
+<p class="note">Recoil ratings are 1–10 (10 = hardest to control) and reflect the weapon's base behaviour before attachments. Ratings are a guide based on community testing, not exact in-game values.</p>
+</div>
+
+<h2 class="sec">Recoil Control Basics</h2>
+<p>Every gun in PUBG kicks up and to the side when you hold the trigger. The fix is always the same: pull your mouse down smoothly while spraying, and learn each gun's pattern.</p>
+<ul>
+<li><strong>Pull down, don't fight it.</strong> Start pulling your mouse down gently as soon as you start firing.</li>
+<li><strong>Crouch before you spray.</strong> Crouching reduces recoil noticeably and makes your spray tighter.</li>
+<li><strong>Use the right grip.</strong> Vertical grips cut vertical kick; angled grips help you aim down sights faster.</li>
+<li><strong>Burst at range.</strong> Beyond 100 metres, fire in short 3–5 round bursts instead of holding the trigger.</li>
+</ul>
+<div class="tip"><strong>Pro Tip:</strong> Practise one gun at a time in the training grounds. Spray a full magazine at a wall from 50 metres, look at the bullet pattern, then repeat it while pulling down — you will see the pattern tighten within minutes.</div>
+<p>Read the full <a href="../guides/recoil-control-guide.html">Recoil Control Guide</a> for a complete spray-training routine.</p>
+</main>
+<footer>
+<div class="footer-inner">
+<div class="footer-col"><h4>PUBG GUIDES</h4><a href="../index.html">Home</a><a href="../index.html#guides">All Guides</a><a href="../index.html#tools">Tools</a></div>
+<div class="footer-col"><h4>Popular Guides</h4><a href="../guides/best-weapons-2026.html">Best Weapons 2026</a><a href="../guides/recoil-control-guide.html">Recoil Control</a><a href="../guides/how-to-win-chicken-dinner.html">Win a Chicken Dinner</a></div>
+<div class="footer-col"><h4>Information</h4><a href="../about.html">About Us</a><a href="../contact.html">Contact</a><a href="../privacy.html">Privacy Policy</a><a href="../disclaimer.html">Disclaimer</a></div>
+<div class="footer-col"><h4>Download</h4><a href="https://store.steampowered.com/app/578080" target="_blank" rel="noopener">Download on Steam</a><a href="https://play.google.com/store/apps/details/PUBG_MOBILE?id=com.tencent.ig&amp;hl=en_GB" target="_blank" rel="noopener">Get it on Google Play</a><a href="https://apps.apple.com/pk/app/pubg-mobile/id1330123889" target="_blank" rel="noopener">Download on the App Store</a></div>
+</div>
+<p class="copyright">PUBG Guides is an unofficial fan-made guide website. It is not affiliated with, endorsed by, or connected to KRAFTON, Inc. or PUBG: Battlegrounds. PUBG and PUBG: Battlegrounds are trademarks of KRAFTON, Inc. &copy; 2026 PUBG Guides.</p>
+</footer>
+<script>
+var WEAPONS={
+'M416':{sub:'Assault Rifle \u2022 5.56mm',vert:4,horz:3,diff:4,pattern:'Mostly straight up with a slight right drift in the second half of the magazine. One of the easiest sprays in the game.',attach:['Compensator','Vertical Foregrip','Tactical Stock','Extended QuickDraw Mag'],tips:['Pull down steadily — the pattern is predictable.','Full-auto is reliable up to about 100 metres.','Pair with a 3x scope for mid-range fights.']},
+'AKM':{sub:'Assault Rifle \u2022 7.62mm',vert:8,horz:7,diff:8,pattern:'Strong upward kick with a hard pull to the left, then right. The hardest AR spray to control, but the damage is huge.',attach:['Compensator','Vertical Foregrip','Extended QuickDraw Mag'],tips:['Pull down hard and left at first, then correct right.','Best in short bursts beyond 50 metres.','Single-fire mode turns it into a strong mid-range marksman rifle.']},
+'Beryl M762':{sub:'Assault Rifle \u2022 7.62mm',vert:9,horz:8,diff:9,pattern:'The wildest recoil in the AR class — fast, hard vertical climb with strong sideways shake.',attach:['Compensator','Vertical Foregrip','Extended QuickDraw Mag'],tips:['Only spray at close range; burst beyond 50 metres.','Crouch before spraying — it helps more on the Beryl than on any other AR.','Use it as a close-range shredder, not a mid-range laser.']},
+'SCAR-L':{sub:'Assault Rifle \u2022 5.56mm',vert:4,horz:4,diff:4,pattern:'Gentle, mostly vertical climb with a small sideways wobble. Very beginner friendly.',attach:['Compensator','Vertical Foregrip','Extended QuickDraw Mag'],tips:['Easy full-auto up to 100 metres.','A great first AR while you learn spray control.','Slightly slower fire rate than the M416 — make your shots count.']},
+'Groza':{sub:'Assault Rifle \u2022 7.62mm (Air Drop)',vert:7,horz:6,diff:7,pattern:'Heavy vertical climb with a left-right sway. Powerful but needs a firm pull-down.',attach:['Suppressor (built-in)','Extended QuickDraw Mag'],tips:['Devastating at close range — get close and spray.','Keep bursts short at mid-range.','The built-in suppressor hides your muzzle flash.']},
+'UMP45':{sub:'SMG \u2022 9mm',vert:3,horz:3,diff:3,pattern:'Very light, smooth climb. One of the easiest guns in the game to spray.',attach:['Compensator','Vertical Foregrip','Extended QuickDraw Mag'],tips:['Laser-like at close range — hold the trigger.','Effective to about 100 metres with a 2x scope.','Great starter gun for new players.']},
+'Vector':{sub:'SMG \u2022 9mm',vert:5,horz:4,diff:5,pattern:'Fast fire rate with a quick vertical climb that settles after the first few shots.',attach:['Compensator','Vertical Foregrip','Extended Mag'],tips:['Melts enemies up close — fastest time-to-kill in the game.','Reload often; the magazine is small.','Pair with an AR for mid-range fights.']},
+'SKS':{sub:'DMR \u2022 7.62mm',vert:6,horz:3,diff:5,pattern:'Semi-auto, so recoil is one kick per shot — strong but fully manageable with a steady rhythm.',attach:['Compensator','Vertical Foregrip','Extended QuickDraw Mag','4x Scope'],tips:['Tap, don\u2019t spam — let the crosshair settle between shots.','Excellent at 100–300 metres.','A cheek pad helps a lot with the kick.']},
+'Mini14':{sub:'DMR \u2022 5.56mm',vert:3,horz:2,diff:3,pattern:'Barely any recoil. Fast, flat and easy to spam at range.',attach:['Compensator','Extended QuickDraw Mag','8x Scope'],tips:['Spam shots at moving targets — the bullet speed is the fastest in the game.','Perfect for long-range poke damage.','Low damage per shot, so aim for the head.']},
+'SLR':{sub:'DMR \u2022 7.62mm',vert:8,horz:4,diff:7,pattern:'Huge kick per shot — the crosshair jumps high every time you fire.',attach:['Compensator','Cheek Pad','Extended QuickDraw Mag','4x Scope'],tips:['Wait for the crosshair to settle between shots.','Devastating damage — two headshots knock a level 2 helmet.','Not for beginners; the SKS is easier to learn.']},
+'DP-28':{sub:'LMG \u2022 7.62mm',vert:5,horz:4,diff:5,pattern:'Slow, steady climb with a big 47-round magazine. Prone position makes it nearly laser-like.',attach:['No attachments — go prone for best control'],tips:['Go prone when spraying at range — recoil drops massively.','47 rounds means you can pre-fire corners.','Slow reload — don\u2019t reload in the open.']},
+'Kar98k':{sub:'Sniper Rifle \u2022 7.62mm',vert:0,horz:0,diff:2,pattern:'Bolt-action — one shot, then re-chamber. No spray recoil to manage.',attach:['Suppressor','Cheek Pad','8x Scope','Bullet Loops'],tips:['One headshot knocks any helmet except level 3.','Lead moving targets slightly.','Always reposition after a shot — the sound gives you away.']}
+};
+var grid=document.getElementById('weaponGrid');
+Object.keys(WEAPONS).forEach(function(name){
+  var b=document.createElement('button');
+  b.className='weapon-btn';b.textContent=name;
+  b.onclick=function(){showWeapon(name);};
+  grid.appendChild(b);
+});
+function showWeapon(name){
+  var w=WEAPONS[name];
+  document.querySelectorAll('.weapon-btn').forEach(function(b){b.classList.toggle('active',b.textContent===name);});
+  document.getElementById('rName').textContent=name;
+  document.getElementById('rSub').textContent=w.sub;
+  document.getElementById('rVert').style.width=(w.vert*10)+'%';
+  document.getElementById('rVertN').textContent=w.vert;
+  document.getElementById('rHorz').style.width=(w.horz*10)+'%';
+  document.getElementById('rHorzN').textContent=w.horz;
+  document.getElementById('rDiff').style.width=(w.diff*10)+'%';
+  document.getElementById('rDiffN').textContent=w.diff;
+  document.getElementById('rPattern').textContent=w.pattern;
+  document.getElementById('rAttach').innerHTML=w.attach.map(function(a){return '<li>'+a+'</li>';}).join('');
+  document.getElementById('rTips').innerHTML=w.tips.map(function(t){return '<li>'+t+'</li>';}).join('');
+  document.getElementById('results').style.display='block';
+}
+showWeapon('M416');
+</script>
+</body>
+</html>
